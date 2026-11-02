@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0B0D12" />
+    <script>
+      // Apply the saved theme preference (dark by default) before first paint so the page never flashes.
+      (function () {
+        var pref = 'dark'
+        try { pref = JSON.parse(localStorage.getItem('projectmentor:theme')) || 'dark' } catch (e) {}
+        var theme = pref === 'system' ? (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark') : pref === 'light' ? 'light' : 'dark'
+        document.documentElement.dataset.theme = theme
+        if (theme === 'light') document.querySelector('meta[name="theme-color"]').setAttribute('content', '#F7F6F2')
+      })()
+    </script>
+    <meta name="description" content="Stratum helps students plan, build, and succeed with an AI project mentor." />
+    <title>Stratum — Academic Project Mentor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
